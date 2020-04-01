@@ -95,10 +95,5 @@ jobs: # a collection of steps
           region: AWS_REGION_ENV_VAR_NAME
           repo: covid
           tag: 'latest'
-workflows:
-  build_and_test:
-    jobs:
-      - build
-      - build-push-image-ecr
 
       
