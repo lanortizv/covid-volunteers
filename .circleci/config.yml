@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2
+  aws-ecr: circleci/aws-ecr@6.8.0
 
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
@@ -81,3 +82,16 @@ jobs: # a collection of steps
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test_results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
+
+      # Build a docker image and push it to aws ecr
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL_ENV_VAR_NAME
+          aws-access-key-id: ACCESS_KEY_ID_ENV_VAR_NAME
+          aws-secret-access-key: SECRET_ACCESS_KEY_ENV_VAR_NAME
+          create-repo: false
+          dockerfile: Dockerfile
+          path: .
+          profile-name: Covid
+          region: AWS_REGION_ENV_VAR_NAME
+          repo: covid
+          tag: 'latest'
