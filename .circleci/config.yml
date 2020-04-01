@@ -5,7 +5,7 @@ orbs:
 
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
-    parallelism: 3 # run three instances of this job in parallel
+    parallelism: 1 # run three instances of this job in parallel
     docker: # run the steps with Docker
       - image: circleci/ruby:2.6.3-stretch-node # ...with this image as the primary container; this is where all `steps` will run
         environment: # environment variables for primary container
@@ -83,7 +83,7 @@ jobs: # a collection of steps
       # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
 
         
-    # Build a docker image and push it to aws ecr
+  # Build a docker image and push it to aws ecr
   aws-ecr/build-and-push-image:
     account-url: AWS_ECR_ACCOUNT_URL_ENV_VAR_NAME
     aws-access-key-id: ACCESS_KEY_ID_ENV_VAR_NAME
@@ -101,5 +101,7 @@ workflows:
   build-and-deploy:
     jobs:
       - build
-      #- aws-ecr/build-and-push-image:
+      - aws-ecr/build-and-push-image:
+          requires:
+            - build
 
