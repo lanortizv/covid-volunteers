@@ -78,11 +78,6 @@ jobs: # a collection of steps
                               --format progress \
                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
-      # Save test results for timing analysis
-      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: test_results
-      # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
-
       # Build a docker image and push it to aws ecr
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL_ENV_VAR_NAME
@@ -95,3 +90,10 @@ jobs: # a collection of steps
           region: AWS_REGION_ENV_VAR_NAME
           repo: covid
           tag: 'latest'
+      
+      # Save test results for timing analysis
+      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: test_results
+      # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
+
+      
