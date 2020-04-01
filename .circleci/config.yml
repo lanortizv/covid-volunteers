@@ -74,8 +74,7 @@ workflows:
   build-and-deploy: 
     jobs: 
       - build
-      - 
-        aws-ecr/build-and-push-image: 
+      - aws-ecr/build-and-push-image: 
           requires: 
             - build
   version: 2
