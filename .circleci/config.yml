@@ -82,9 +82,9 @@ jobs: # a collection of steps
           path: test_results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
   
-  build-push-image-ecr:    
+      
       # Build a docker image and push it to aws ecr
-      aws-ecr/build-and-push-image:
+  aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL_ENV_VAR_NAME
           aws-access-key-id: ACCESS_KEY_ID_ENV_VAR_NAME
           aws-secret-access-key: SECRET_ACCESS_KEY_ENV_VAR_NAME
