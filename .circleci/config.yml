@@ -67,7 +67,7 @@ jobs: # a collection of steps
 
       #- run:
       #    name: Database setup
-          # command: bin/rails db:schema:load --trace
+      # command: bin/rails db:schema:load --trace
       #    command: bin/rails db:setup --trace
 
       #- run:
@@ -82,7 +82,6 @@ jobs: # a collection of steps
           path: test_results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
 
-        
   # Build a docker image and push it to aws ecr
   aws-ecr/build-and-push-image:
     account-url: AWS_ECR_ACCOUNT_URL_ENV_VAR_NAME
@@ -94,14 +93,13 @@ jobs: # a collection of steps
     profile-name: Covid
     region: AWS_REGION_ENV_VAR_NAME
     repo: covid
-    tag: 'latest'
+    tag: "latest"
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-     - build
-     - aws-ecr/build-and-push-image:
-        requires:
-         - build
-
+      - build
+      - aws-ecr/build-and-push-image:
+          requires:
+            - build
