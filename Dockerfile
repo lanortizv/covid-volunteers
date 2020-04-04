@@ -19,6 +19,9 @@ RUN mkdir /mnt/rails/
 WORKDIR /mnt/rails/
 
 COPY . /mnt/rails
+ENV DATABASE_USER
+ENV DATABASE_PASSWORD
+ENV DATABASE_HOST
 COPY Gemfile Gemfile.lock /mnt/rails/
 COPY package.json /mnt/rails/
 COPY yarn.lock /mnt/rails/
