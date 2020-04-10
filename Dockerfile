@@ -30,4 +30,4 @@ RUN yarn install --check-files
 WORKDIR /mnt/rails/
 EXPOSE 5000
 
-CMD ["sh", "-c", "bin/rails db:setup ; bundle exec rails s -p 5000 -b 0.0.0.0"]
+CMD ["sh", "-c", "bin/rails db:setup ; bundle exec rails s -p 80 -b 0.0.0.0"]
