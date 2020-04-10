@@ -15,7 +15,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -73,7 +73,7 @@ gem 'devise'
 gem 'rinku'
 
 # Sending emails.
-gem 'aws-sdk'
+gem 'aws-sdk-ses'
 gem 'aws-sdk-rails'
 
 # Exceptions.
@@ -87,3 +87,12 @@ gem 'actionview-encoded_mail_to', git: 'https://github.com/mirko314/actionview-e
 
 # Gravatar images
 gem 'gravatar_image_tag'
+
+# .env
+gem 'dotenv-rails', groups: [ :development, :test ]
+
+# Configuration
+gem 'config'
+
+# Country codes
+gem 'iso_country_codes', '~> 0.7.8'

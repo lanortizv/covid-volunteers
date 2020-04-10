@@ -15,6 +15,12 @@ Skills: <%= @user.skill_list.join(', ') %>
 <%- if @user.level_of_availability.present? %>
 Level of Availability: <%= @user.level_of_availability %>
 <%- end -%>
+<%- if @user_volunteered_projects_count > 2 -%>
+Volunteered in: <%= @user_volunteered_projects_count - 1 %> other projects
+<%- end -%>
+<% if @note.present? -%>
+Message from volunteer: <%= @note %>
+<%- end -%>
 
 About:
 <%= @user.about %>
@@ -27,4 +33,4 @@ Notes:
 <%- end -%>
 
 - Your friends at helpwithcovid.com
-For any feedback or questions regarding helpwithcovid.com, let us know at https://discord.gg/875AhXS.
+For any feedback or questions regarding helpwithcovid.com, let us know at https://discord.gg/8nAJfFN.

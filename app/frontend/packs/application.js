@@ -20,10 +20,9 @@ const svgs = require.context('../svgs', true)
 const svgPath = (name) => svgs(name, true)
 
 // Tailwind.
-import './stylesheets.css'
+import './../styles/application.css'
 
 // Main App.
 import Covid from '../covid'
 window.Covid = Covid
 Covid.initialize();
-

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_073356) do
+ActiveRecord::Schema.define(version: 2020_04_08_030827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,18 +29,24 @@ ActiveRecord::Schema.define(version: 2020_03_28_073356) do
   create_table "projects", force: :cascade do |t|
     t.integer "user_id"
     t.string "name", default: "", null: false
-    t.string "description", default: "", null: false
     t.string "participants", default: "", null: false
+    t.string "description", default: "", null: false
+    t.string "goal", default: "", null: false
     t.string "looking_for", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "location", default: "", null: false
+    t.string "volunteer_location", default: "", null: false
     t.string "contact", default: "", null: false
     t.boolean "highlight", default: false, null: false
     t.string "progress", default: "", null: false
     t.string "docs_and_demo", default: "", null: false
     t.string "number_of_volunteers", default: "", null: false
     t.string "links", default: ""
+    t.string "status", default: "", null: false
+    t.boolean "accepting_volunteers", default: true
+    t.string "short_description", default: "", null: false
+    t.string "target_country", default: "", null: false
+    t.string "target_location", default: "", null: false
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -95,11 +101,19 @@ ActiveRecord::Schema.define(version: 2020_03_28_073356) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "volunteer_groups", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "assigned_user_ids", default: [], null: false, array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "volunteers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "note", default: "", null: false
   end
 
   add_foreign_key "taggings", "tags"
